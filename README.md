@@ -59,8 +59,25 @@ go version
 git clone https://github.com/myselfgus/tools.git
 cd tools
 
+# Explore uma categoria específica
+cd [01-05]-[categoria]
+
 # Explore uma ferramenta específica
-cd [nome-da-ferramenta]
+cd [01-05]-[categoria]/[nome-da-ferramenta]
+```
+
+### Estrutura Organizada
+
+```
+tools/
+├── 01-servidores-mcp-protocolos/     # Infraestrutura MCP
+├── 02-plataformas-genai-ia/          # Plataformas GenAI
+├── 03-sdks-desenvolvimento/          # SDKs & Frameworks  
+├── 04-agentes-automacao/             # Agentes & Automação
+├── 05-aplicacoes-especializadas/     # Apps Especializadas
+├── README.md                         # Este documento
+├── NAVIGATION.md                     # Guia de navegação
+└── CONTRIBUTING.md                   # Guia de contribuição
 ```
 
 ---
@@ -68,6 +85,7 @@ cd [nome-da-ferramenta]
 ## 📂 Categorias de Ferramentas
 
 ### 🔌 Servidores MCP & Protocolos
+📁 **Localização**: `01-servidores-mcp-protocolos/`
 
 > **Infraestrutura de comunicação e protocolos para integração de modelos**
 
@@ -105,6 +123,7 @@ Esta categoria inclui ferramentas fundamentais para implementação do Model Con
 - **Desenvolvimento**: Templates e discovery automático
 
 ### 🤖 Plataformas GenAI & IA
+📁 **Localização**: `02-plataformas-genai-ia/`
 
 > **Ferramentas e plataformas para desenvolvimento com IA generativa**
 
@@ -131,6 +150,7 @@ Soluções completas para construção, deploy e gestão de aplicações baseada
 - **Enterprise Ready**: Soluções para ambientes corporativos
 
 ### ⚙️ SDKs & Desenvolvimento
+📁 **Localização**: `03-sdks-desenvolvimento/`
 
 > **Kits de desenvolvimento e frameworks para diferentes linguagens**
 
@@ -155,6 +175,7 @@ Ferramentas fundamentais para desenvolvimento de aplicações integradas ao ecos
 - **MCP Native**: Integração nativa com protocolos MCP
 
 ### 🎯 Agentes & Automação
+📁 **Localização**: `04-agentes-automacao/`
 
 > **Sistemas de agentes inteligentes e automação**
 
@@ -181,6 +202,7 @@ Plataformas para criação, gestão e orquestração de agentes autônomos.
 - **Computer Control**: Controle direto de sistemas computacionais
 
 ### 🏥 Aplicações Especializadas
+📁 **Localização**: `05-aplicacoes-especializadas/`
 
 > **Soluções verticais para casos de uso específicos**
 
@@ -228,17 +250,17 @@ graph TB
 
 1. **Pipeline Healthcare Completo**
    ```
-   genkit-intro → healthcare → page_voither → biomcp
+   02-plataformas-genai-ia/genkit-intro → 05-aplicacoes-especializadas/healthcare → 05-aplicacoes-especializadas/page_voither → 05-aplicacoes-especializadas/biomcp
    ```
 
 2. **Desenvolvimento de Agentes MCP**
    ```
-   python-sdk/go-sdk → mcp-create → agent-starter-pack → ops-agent
+   03-sdks-desenvolvimento/python-sdk → 01-servidores-mcp-protocolos/mcp-create → 04-agentes-automacao/agent-starter-pack → 04-agentes-automacao/ops-agent
    ```
 
 3. **Plataforma GenAI Enterprise**
    ```
-   vertex-ai-samples → genai-factory → cloud-run-mcp → github-enterprise-mcp
+   02-plataformas-genai-ia/vertex-ai-samples → 02-plataformas-genai-ia/genai-factory → 01-servidores-mcp-protocolos/cloud-run-mcp → 01-servidores-mcp-protocolos/github-enterprise-mcp
    ```
 
 ---
@@ -249,15 +271,15 @@ graph TB
 
 ```bash
 # 1. Usar o template de criação
-cd mcp-create
+cd 01-servidores-mcp-protocolos/mcp-create
 npm run create-agent my-agent
 
 # 2. Desenvolver com SDK
-cd ../python-sdk
+cd ../../03-sdks-desenvolvimento/python-sdk
 pip install -r requirements.txt
 
 # 3. Deploy na nuvem
-cd ../cloud-run-mcp
+cd ../../01-servidores-mcp-protocolos/cloud-run-mcp
 gcloud run deploy my-agent
 ```
 
@@ -265,11 +287,11 @@ gcloud run deploy my-agent
 
 ```bash
 # 1. Configurar Genkit
-cd genkit-intro
+cd 02-plataformas-genai-ia/genkit-intro
 go mod tidy && go run main.go
 
 # 2. Configurar aplicação healthcare
-cd ../healthcare
+cd ../../05-aplicacoes-especializadas/healthcare
 npm install && npm run dev
 
 # 3. Conectar com VOITHER

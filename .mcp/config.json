@@ -1,0 +1,175 @@
+{
+  "name": "tools-repository-mcp-hub",
+  "version": "1.0.0",
+  "description": "Central MCP configuration hub for the tools repository",
+  "mcpServers": {
+    "github-enterprise": {
+      "name": "GitHub Enterprise MCP",
+      "path": "./mcp_servers_and_integrations/github-enterprise-mcp",
+      "capabilities": [
+        "repository_management",
+        "workflow_automation", 
+        "issue_tracking",
+        "pr_automation",
+        "release_management"
+      ],
+      "config": {
+        "repository": "myselfgus/tools",
+        "features": {
+          "automated_workflows": true,
+          "intelligent_pr_review": true,
+          "dependency_monitoring": true,
+          "security_scanning": true
+        }
+      }
+    },
+    "server-creator": {
+      "name": "MCP Server Creator",
+      "path": "./core_tooling_and_cli/MCP-Server-Creator",
+      "capabilities": [
+        "scaffold_new_servers",
+        "template_generation",
+        "best_practices_enforcement",
+        "automated_testing_setup"
+      ],
+      "config": {
+        "templates": {
+          "python": "./templates/python-mcp-server",
+          "typescript": "./templates/typescript-mcp-server",
+          "go": "./templates/go-mcp-server"
+        }
+      }
+    },
+    "discovery": {
+      "name": "MCP Discovery Service",
+      "path": "./core_tooling_and_cli/mcp-discovery",
+      "capabilities": [
+        "service_registry",
+        "capability_mapping",
+        "health_monitoring",
+        "load_balancing"
+      ],
+      "config": {
+        "registry_storage": "sqlite",
+        "health_check_interval": 30,
+        "auto_discovery": true
+      }
+    },
+    "computer-control": {
+      "name": "Computer Control MCP",
+      "path": "./mcp_servers_and_integrations/computer-control-mcp",
+      "capabilities": [
+        "file_system_operations",
+        "process_management",
+        "environment_setup",
+        "automation_scripts"
+      ],
+      "config": {
+        "allowed_operations": [
+          "file_read",
+          "file_write",
+          "directory_create",
+          "script_execution"
+        ],
+        "security_level": "strict"
+      }
+    },
+    "chat-interface": {
+      "name": "Chat MCP Interface",
+      "path": "./mcp_servers_and_integrations/chat-mcp",
+      "capabilities": [
+        "conversational_interface",
+        "command_interpretation",
+        "natural_language_queries",
+        "interactive_help"
+      ],
+      "config": {
+        "model": "gpt-4",
+        "context_window": 8192,
+        "memory_enabled": true
+      }
+    },
+    "database-suite": {
+      "name": "Database Integration Suite",
+      "servers": {
+        "mongodb": "./mcp_servers_and_integrations/mongodb-mcp-server",
+        "redis": "./mcp_servers_and_integrations/mcp-redis",
+        "sqlite": "./mcp_servers_and_integrations/sqlite-literature-management-fastmcp-mcp-server"
+      },
+      "capabilities": [
+        "data_persistence",
+        "caching",
+        "search_indexing",
+        "analytics_storage"
+      ]
+    },
+    "vector-search": {
+      "name": "Vector Search Suite",
+      "servers": {
+        "chroma": "./mcp_servers_and_integrations/chroma-mcp",
+        "pinecone": "./mcp_servers_and_integrations/pinecone-mcp"
+      },
+      "capabilities": [
+        "semantic_search",
+        "code_similarity",
+        "documentation_indexing",
+        "intelligent_recommendations"
+      ]
+    }
+  },
+  "workflows": {
+    "repository_optimization": {
+      "description": "Automated repository optimization workflow",
+      "steps": [
+        {
+          "name": "analyze_structure",
+          "server": "discovery",
+          "action": "scan_repository"
+        },
+        {
+          "name": "optimize_github_config",
+          "server": "github-enterprise",
+          "action": "apply_best_practices"
+        },
+        {
+          "name": "create_missing_servers",
+          "server": "server-creator",
+          "action": "scaffold_needed_servers"
+        },
+        {
+          "name": "setup_vector_indexing",
+          "server": "vector-search",
+          "action": "index_codebase"
+        }
+      ]
+    },
+    "intelligent_development": {
+      "description": "AI-powered development assistance",
+      "steps": [
+        {
+          "name": "monitor_changes",
+          "server": "github-enterprise",
+          "action": "watch_repository"
+        },
+        {
+          "name": "analyze_code",
+          "server": "vector-search",
+          "action": "semantic_analysis"
+        },
+        {
+          "name": "suggest_improvements",
+          "server": "chat-interface",
+          "action": "generate_suggestions"
+        }
+      ]
+    }
+  },
+  "automation": {
+    "enabled": true,
+    "schedules": {
+      "health_check": "*/5 * * * *",
+      "optimization_scan": "0 2 * * *",
+      "security_audit": "0 1 * * 0"
+    }
+  }
+}

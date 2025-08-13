@@ -1,0 +1,91 @@
+{
+  "name": "Tools Repository MCP Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    },
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.21"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.mypy-type-checker",
+        "golang.go",
+        "ms-vscode.vscode-typescript-next",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions",
+        "ms-vscode.vscode-github-issue-notebooks"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.mypyEnabled": true,
+        "go.toolsManagement.checkForUpdates": "local",
+        "github.copilot.enable": {
+          "*": true,
+          "yaml": true,
+          "plaintext": true,
+          "markdown": true
+        },
+        "files.associations": {
+          "*.mcp": "json",
+          "*.mcpconfig": "yaml"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "python .mcp/orchestrator.py --action=setup-environment",
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "forwardPorts": [
+    3000,
+    8000,
+    8080,
+    9000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Development Server",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "MCP Orchestrator",
+      "onAutoForward": "silent"
+    },
+    "8080": {
+      "label": "Web Interface",
+      "onAutoForward": "openPreview"
+    },
+    "9000": {
+      "label": "MCP Discovery",
+      "onAutoForward": "silent"
+    }
+  },
+  "containerEnv": {
+    "MCP_ENVIRONMENT": "development",
+    "MCP_LOG_LEVEL": "INFO",
+    "GITHUB_CODESPACES": "true"
+  },
+  "remoteUser": "codespace"
+}
